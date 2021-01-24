@@ -161,8 +161,12 @@ public class OklahomaCovid19Registration {
                 String dateString = dtf.format(now);
                 String emailFromName = Configuration.getInstance().getEmailFromName();
                 String emailFromPassword = Configuration.getInstance().getEmailFromPassword();
-                for (String email : Configuration.getInstance().getEmailToNames()) {
-                    Mailer.send(emailFromName, emailFromPassword, email, dateString + ": NO COVID-19 APPOINTMENTS FOR " + this.name, "Radius Checked: " + radius.distance + ". " + tableRows.size() + " Locations Scanned.");
+                // only send notification if the list wasn't empty last time but it is empty now.
+                if(!this.lastAvailableCenters.isEmpty())
+                {
+                    for (String email : Configuration.getInstance().getEmailToNames()) {
+                        Mailer.send(emailFromName, emailFromPassword, email, dateString + ": NO COVID-19 APPOINTMENTS FOR " + this.name, "Radius Checked: " + radius.distance + ". " + tableRows.size() + " Locations Scanned.");
+                    }
                 }
                 this.lastAvailableCenters = AvailableList;                
             }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.sparkapp.covid19checker;
+package org.sparkapp.ShotAvailabilityChecker;
 
 import java.nio.file.Paths;
 import java.util.concurrent.Executors;
@@ -14,27 +14,26 @@ import java.util.concurrent.TimeUnit;
  *
  * @author rowta
  */
-public class Covid19Checker {
+public class ShotAvailabilityChecker {
 
     public static void main(String[] args) {
         String filePath = Paths.get(args[0]).toAbsolutePath().toString();
         System.out.println("Loading: "+filePath);
-        Configuration.getInstance().loadConfiguration(filePath);
         Configuration config = Configuration.getInstance();
-        System.setProperty("webdriver.chrome.driver", Configuration.getInstance().getWebDriverLocation());
-
-        // run every hour.
+        config.loadConfiguration(filePath);
+        System.setProperty("webdriver.chrome.driver", config.getWebDriverLocation());
+        // Run every Period # of minutes
         ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
         scheduler.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
-                for(OklahomaCovid19Registration ok:Configuration.getInstance().getOklahomaList())
+                for(OklahomaCovid19Registration ok:config.getOklahomaList())
                 {
                     ok.process();
                 }
             }
             // initial delay, number of time units, unit of time
-        }, 0, 15, TimeUnit.MINUTES);
+        }, 0, config.getPeriod(), TimeUnit.MINUTES);
 
     }
 }

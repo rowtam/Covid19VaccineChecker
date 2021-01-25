@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.sparkapp.covid19checker;
+package org.sparkapp.ShotAvailabilityChecker;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -31,6 +31,7 @@ public class Configuration {
     private ArrayList<String> emailToNames;
     private String webDriverLocation;
     private String smtphost, smtpport, smtpauth;
+    private int period;
   
     // private constructor restricted to this class itself 
     private Configuration() 
@@ -44,6 +45,7 @@ public class Configuration {
         this.smtphost = "";
         this.smtpport = "";
         this.smtpauth = "";
+        this.period = 15;
     } 
   
     // static method to create instance of Singleton class 
@@ -60,7 +62,7 @@ public class Configuration {
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = br.readLine()) != null) {
-                if(!line.trim().startsWith("#"))
+                if(!line.trim().startsWith("#") && !line.trim().isBlank())
                 {
                     line = line.trim();
                     //System.out.println("Line: "+line);
@@ -72,12 +74,8 @@ public class Configuration {
                             this.setWebDriverLocation(tokens[1].replaceAll("\"", ""));
                             break;
                         case "entry":
-                            
                             String[] registrationTokens = tokens[1].split(",\"");
-                            //System.out.println("found entry:"+registrationTokens.toString());
                             if (registrationTokens.length >= 8) {
-                                System.out.println("Greater than or equal 8");
-                                
                                 if (registrationTokens[0].trim().replaceAll("\"", "").equalsIgnoreCase("Oklahoma")) {
                                     String name = registrationTokens[1].trim().replaceAll("\"", "");
                                     String URL = registrationTokens[2].trim().replaceAll("\"", "");
@@ -135,6 +133,9 @@ public class Configuration {
                             break;
                         case "smtpauth":
                             this.setSmtpauth(tokens[1].trim().replaceAll("\"", ""));
+                            break;
+                        case "period":
+                            this.setPeriod(Integer.parseInt(tokens[1].trim().replaceAll("\"", "")));
                             break;
                         default:
                             break;
@@ -287,6 +288,20 @@ public class Configuration {
      */
     public void setSmtpauth(String smtpauth) {
         this.smtpauth = smtpauth;
+    }
+
+    /**
+     * @return the period
+     */
+    public int getPeriod() {
+        return period;
+    }
+
+    /**
+     * @param period the period to set
+     */
+    public void setPeriod(int period) {
+        this.period = period;
     }
 
 }

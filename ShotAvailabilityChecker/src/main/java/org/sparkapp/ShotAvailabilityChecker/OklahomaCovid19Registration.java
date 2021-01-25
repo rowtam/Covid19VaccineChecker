@@ -1,4 +1,4 @@
-package org.sparkapp.covid19checker;
+package org.sparkapp.ShotAvailabilityChecker;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

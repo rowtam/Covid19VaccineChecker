@@ -12,8 +12,12 @@ via SMS/MMS/E-Mail through an SMTP gateway indicating changes in availability.
 4) SMS/MMS Gateway or E-mail address:
 
 # Configuration File
+
 ### Location of Chrome Browser Driver
 webdriver=["C:\Users\Path-To\Documents\chromedriver_win32\chromedriver.exe"]
+
+### Period to Check Websites in Minutes
+period=["15"]
 
 ### Multiple Entries
 Parameters: State, Name (can be anything), URL,address, radius in miles from address (5,10,25,50,100 only)

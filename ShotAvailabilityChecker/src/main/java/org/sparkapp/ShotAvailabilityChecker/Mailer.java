@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.sparkapp.covid19checker;
+package org.sparkapp.ShotAvailabilityChecker;
 import java.util.Properties;    
 import javax.mail.*;    
 import javax.mail.internet.*;

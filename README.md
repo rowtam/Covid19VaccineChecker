@@ -1,9 +1,9 @@
 # Shot Availability Checker
 
-This is a Java client that runs on a PC and checks for vaccine availability.  It sends notifications
+This is a Java client that runs on a PC and checks for vaccine availability.  It sends push notifications
 via SMS/MMS/E-Mail through an SMTP gateway indicating changes in availability. 
 
-## Checks the Oklahoma Covid Vaccine Website for Availability
+## Currently ONLY Checks the Oklahoma Covid Vaccine Website for Availability
 
 # Setup
 1) Requires Selenium ChromeDriver matching the version of Chrome you have installed

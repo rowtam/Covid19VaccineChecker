@@ -12,6 +12,8 @@
 webdriver=["C:\Users\Path-To\Documents\chromedriver_win32\chromedriver.exe"]
 
 ### Multiple Entries
+Parameters: State, Name (can be anything), URL,address, radius in miles from address (5,10,25,50,100 only)
+
 entry=["Massachusetts","First Last","https://vaccinate.oklahoma.gov/follow-up-vaccine/?id=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXX","12","25","1970","1600 Pennsylvania Blvd, Boston, MA 99999, United States","100"]
 
 entry=["Massachusetts","First Last","https://vaccinate.oklahoma.gov/follow-up-vaccine/?id=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXX","12","25","1970","1600 Pennsylvania Blvd, Boston, MA 99999, United States","100"]
